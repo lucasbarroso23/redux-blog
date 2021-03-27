@@ -1,9 +1,9 @@
-function App() {
-  return (
-    <div className="app">
-     <h1>This is an app</h1>
-    </div>
-  );
-}
+import Homepage from './components/Homepage';
+
+const App = () => (
+  <div className='app'>
+    <Homepage />
+  </div>
+);
 
 export default App;
