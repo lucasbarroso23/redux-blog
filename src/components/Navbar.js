@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectSignedIn,
   selectUserData,
+  setInput,
   setSignedIn,
   setUserData,
 } from "../features/usersSlice";
@@ -24,7 +25,10 @@ const Navbar = () => {
     dispatch(setUserData(null));
   };
 
-  const handleClick = (e) => {};
+  const handleClick = (e) => {
+    e.preventDefault();
+    dispatch(setInput(e.target.value))
+  };
 
   return (
     <div className="navbar">
@@ -52,7 +56,7 @@ const Navbar = () => {
           />
           <h1 className="signedIn">{userData?.givenName}</h1>
           <GoogleLogout
-            clientId={process.env.GOOGLE_AUTH_KEY}
+            clientId={process.env.REACT_APP_GOOGLE_AUTH_KEY}
             render={(renderProps) => (
               <button
                 onClick={renderProps.onClick}

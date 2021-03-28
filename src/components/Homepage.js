@@ -27,7 +27,7 @@ const Homepage = () => {
             up and start reading some quality blogs.
           </p>
           <GoogleLogin
-            clientId={process.env.GOOGLE_AUTH_KEY}
+            clientId={process.env.REACT_APP_GOOGLE_AUTH_KEY}
             render={(renderProps) => (
               <button
                 onClick={renderProps.onClick}
