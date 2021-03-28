@@ -3,6 +3,8 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserInput, setBlogData } from "../features/usersSlice";
 
+import '../styling/blogs.css';
+
 const Blogs = () => {
   const searchInput = useSelector(selectUserInput);
   const api_key = process.env.REACT_APP_GNEWS_API_KEY;
@@ -30,6 +32,25 @@ const Blogs = () => {
   return (
     <div className="blog__page">
       <h1 className="blog__page__header">Blogs</h1>
+      {loading ? <h2 className="loading">Loading...</h2> : ""}
+      <div className="blogs">
+        {blogs?.articles?.map((blog) => (
+          <a className="blog" target="_blank" href={blog.url}>
+            <img src={blog.image} />
+            <div>
+              <h3 className="sourceName">
+                <span>{blog.source.name}</span>
+                <p>{blog.publishedAt}</p>
+              </h3>
+              <h1>{blog.title}</h1>
+              <p>{blog.description}</p>
+            </div>
+          </a>
+        ))}
+        {blogs?.totalArticles === 0 && (
+          <h1 className="no__blogs">No blogs available 😕. Search something else!</h1>
+        )}
+      </div>
     </div>
   );
 };
